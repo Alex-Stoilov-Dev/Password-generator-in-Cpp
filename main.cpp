@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <vector>
 #include <random>
+#include <string>
 
 //using namespace std;
 
@@ -44,13 +45,13 @@ int main(int argc, char* argv[]){
 
     std::uniform_int_distribution<int> dist(0,81);
     std::uniform_int_distribution<int> custom_dist(0,0);
+    
     int choose_character_set;
     bool custom_charset_chosen;
     // This ensures that we generate a random number between 0-81 
 
     // This whole chunk allows the user to run ./main <pass_length>
-    if(argc > 1){
-        
+    if(argc > 1){ 
         try{
 	
             unsigned int password_length = std::stoi(argv[1]);
@@ -64,7 +65,7 @@ int main(int argc, char* argv[]){
                 for (int i = 0; i < password_length; i++){
                     char random_char = ascii_set[dist(gen)];
                     password.push_back(random_char);
-		    std::cout << password.at(i);
+		            std::cout << password.at(i);
                 }
                 exit(1);
             }
@@ -84,7 +85,7 @@ int main(int argc, char* argv[]){
         std::cin >> password_length;
     }
 
-    std::cout << "Which characters would you like to include in the password (leave blank for all)\n1. Lowercase\n2. Uppercase\n3. Numbers \n4. Symbols\n";
+    std::cout << "Which characters would you like to include in the password (use 0 for all)\n1. Lowercase\n2. Uppercase\n3. Numbers \n4. Symbols\n";
     std::cin >> choose_character_set;
 
     switch (choose_character_set)
